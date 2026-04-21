@@ -1,0 +1,10 @@
+pyspark==3.5.1
+pandas
+numpy
+pyarrow
+boto3
+requests
+matplotlib
+seaborn
+jupyter
+pyyaml   

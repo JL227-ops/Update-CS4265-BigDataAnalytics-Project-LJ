@@ -1,0 +1,14 @@
+.DS_Store
+__pycache__/
+*.pyc
+.env
+*.log
+
+# Big Data files (VERY IMPORTANT)
+*.gz
+*.zip
+*.wet
+*.csv
+
+# Mac / system
+*.DS_Store

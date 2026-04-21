@@ -1,0 +1,59 @@
+
+# STORAGE CONFIG
+storage:
+  type: "s3"
+  bucket: "cs4265-bigdata-product-trends-jialiu"
+
+
+# DATA PATHS (S3)
+paths:
+  raw: "s3a://cs4265-bigdata-product-trends-jialiu/raw/"
+  processed: "s3a://cs4265-bigdata-product-trends-jialiu/processed/"
+  output: "s3a://cs4265-bigdata-product-trends-jialiu/output/"
+
+
+# DATA SOURCES
+sources:
+  amazon_reviews: "s3a://cs4265-bigdata-product-trends-jialiu/raw/reviews/Electronics.json.gz"
+  amazon_metadata: "s3a://cs4265-bigdata-product-trends-jialiu/raw/metadata/meta_Electronics.json.gz"
+  common_crawl: "s3a://cs4265-bigdata-product-trends-jialiu/raw/commoncrawl/"
+  google_trends: "s3a://cs4265-bigdata-product-trends-jialiu/raw/google_trends/google_trends.csv"
+
+# PROCESSING CONFIG
+processing:
+  mode: "batch"
+  partitions: 8
+  cache_enabled: true
+
+
+# FEATURE EXTRACTION
+features:
+  extract_keywords: true
+  extract_category: true
+  extract_time: true
+  time_granularity: "month"
+
+
+# INTEGRATION SETTINGS
+integration:
+  join_type: "approximate"      # exact / approximate
+  matching_method: "keyword"    # keyword / category / hybrid
+  enable_fuzzy_matching: true
+
+
+# AGGREGATION SETTINGS
+aggregation:
+  group_by:
+    - category
+    - time
+  metrics:
+    - count
+    - frequency
+  top_k: 20
+
+
+# OUTPUT SETTINGS
+output:
+  format: "parquet"
+  save_to_s3: true
+  output_path: "s3a://cs4265-bigdata-product-trends-jialiu/output/results/"

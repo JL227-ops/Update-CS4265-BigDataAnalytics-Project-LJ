@@ -143,13 +143,10 @@ CS4265_M2_Package_Cindy_Liu/
 │   ├── processing/
 │   │   └── placeholder.py
 │   └── main.py
-├── data/
-│   ├── raw/
-│   └── processed/
+├── data/ # S3
 ├── docs/
-│   ├── M2_Progress_Report.docx
-│   └── M2_Progress_Report.pdf
-├── logs/
+│   ├── update_CS4265_JIA_LIU_M1.pdf
+│   └── update_CS4265_JIA_LIU_M2.pdf
 ├── requirements.txt
 ├── .gitignore
 └── README.md
@@ -185,7 +182,7 @@ This project expects AWS credentials to be configured through one of the followi
 - environment variables
 - IAM role (if running on AWS)
 ---
-Required environment variables (example):
+Required environment variables :
 - AWS_ACCESS_KEY_ID
 - AWS_SECRET_ACCESS_KEY
 - AWS_DEFAULT_REGION
@@ -233,9 +230,6 @@ For submission, include:
 - sample row counts (e.g., 1000 records for ingestion verification)
 - S3 directory listing showing Parquet files
 - successful pipeline execution logs (main.py)
-- repository URL
-- M2 progress report PDF
-- M2 progress report PDF.
 
 ---
 

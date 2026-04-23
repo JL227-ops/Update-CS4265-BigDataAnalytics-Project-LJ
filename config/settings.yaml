@@ -4,6 +4,10 @@ storage:
   type: "s3"
   bucket: "cs4265-bigdata-product-trends-jialiu"
 
+aws:
+  bucket: "cs4265-bigdata-product-trends-jialiu"
+  region: "us-east-2"
+
 
 # DATA PATHS (S3)
 paths:
@@ -16,44 +20,20 @@ paths:
 sources:
   amazon_reviews: "s3a://cs4265-bigdata-product-trends-jialiu/raw/reviews/Electronics.json.gz"
   amazon_metadata: "s3a://cs4265-bigdata-product-trends-jialiu/raw/metadata/meta_Electronics.json.gz"
-  common_crawl: "s3a://cs4265-bigdata-product-trends-jialiu/raw/commoncrawl/"
-  google_trends: "s3a://cs4265-bigdata-product-trends-jialiu/raw/google_trends/google_trends.csv"
-
-# PROCESSING CONFIG
-processing:
-  mode: "batch"
-  partitions: 8
-  cache_enabled: true
-
-
-# FEATURE EXTRACTION
-features:
-  extract_keywords: true
-  extract_category: true
-  extract_time: true
-  time_granularity: "month"
-
-
-# INTEGRATION SETTINGS
-integration:
-  join_type: "approximate"      # exact / approximate
-  matching_method: "keyword"    # keyword / category / hybrid
-  enable_fuzzy_matching: true
-
-
-# AGGREGATION SETTINGS
-aggregation:
-  group_by:
-    - category
-    - time
-  metrics:
-    - count
-    - frequency
-  top_k: 20
+  google_trends: "s3a://cs4265-bigdata-product-trends-jialiu/raw/google_trends/time_series_US_20180101-0000_20260418-2022.csv"
+  #Common Crawl sample（只用一个文件）
+  common_crawl_sample: "s3a://commoncrawl/crawl-data/CC-MAIN-2018-39/segments/1537267155413.17/wet/CC-MAIN-20180918130631-20180918150631-00000.warc.wet.gz"
 
 
 # OUTPUT SETTINGS
-output:
+outputs:
   format: "parquet"
   save_to_s3: true
-  output_path: "s3a://cs4265-bigdata-product-trends-jialiu/output/results/"
+  reviews_parquet: "s3a://cs4265-bigdata-product-trends-jialiu/processed/reviews_parquet/"
+  metadata_parquet: "s3a://cs4265-bigdata-product-trends-jialiu/processed/metadata_parquet/"
+  trends_parquet: "s3a://cs4265-bigdata-product-trends-jialiu/processed/trends_parquet/"
+  commoncrawl_parquet: "s3a://cs4265-bigdata-product-trends-jialiu/processed/commoncrawl_sample_parquet/"
+
+
+
+

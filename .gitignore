@@ -13,3 +13,6 @@ __pycache__/
 # Mac / system
 *.DS_Store
 .Rhistory
+data/
+logs/
+*.parquet

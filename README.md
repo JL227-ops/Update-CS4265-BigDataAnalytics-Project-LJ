@@ -273,17 +273,6 @@ spark-submit \
   --conf spark.hadoop.fs.s3a.endpoint=s3.amazonaws.com \
   src/main.py
 ```
-## Data Dictionary
-
-| Field Name | Type | Description |
-|-----------|------|------------|
-| asin | string | Unique product identifier |
-| title | string | Product title |
-| brand | string | Brand name |
-| review_count | integer | Total number of reviews |
-| avg_rating | float | Average rating (1–5) |
-| avg_review_length | float | Average length of review text |
-
 ## Pipeline Documentation
 
 The pipeline consists of the following stages:

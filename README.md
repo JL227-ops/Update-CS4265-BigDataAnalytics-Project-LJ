@@ -1,6 +1,6 @@
 # Update-CS4265-BigDataAnalytics-Project-LJ
 # Distributed Multi-Source Data Pipeline for Product Trend Analysis
-
+<!--
 ## M1-Project Overview
 
 This project builds a distributed Big Data pipeline to identify emerging product trends and analyze consumer interests by integrating multiple heterogeneous data sources.
@@ -235,10 +235,171 @@ For submission, include:
 
 ## Notes on Scope
 This Milestone 2 implementation intentionally focuses on **viability** rather than full analytics. The larger goal for M3 is to clean, normalize, integrate, and analyze these datasets in a distributed environment.
+-->
 
+## M3 -Complete Implementation
+This project builds a distributed data pipeline using Apache Spark and Amazon S3 to analyze product trends from multiple heterogeneous data sources.
+
+## Data Sources
+
+- Amazon Electronics Reviews (JSON)
+- Amazon Metadata (JSON)
+- Google Trends (CSV)
+- Common Crawl (text)
+
+## Pipeline Architecture
+
+S3 → Ingestion → Cleaning → Transformation → Integration → Aggregation → Output
+
+## Requirements
+
+- Python 3.x
+- PySpark
+- AWS CLI configured
+
+## Setup
+```bash
+pip install -r requirements.txt
+aws configure
+```
+Note: AWS credentials are required to access S3 data sources.
+
+## Run Pipeline
+```bash
+spark-submit \
+  --packages org.apache.hadoop:hadoop-aws:3.4.2 \
+  --conf spark.hadoop.fs.s3a.access.key=YOUR_KEY \
+  --conf spark.hadoop.fs.s3a.secret.key=YOUR_SECRET \
+  --conf spark.hadoop.fs.s3a.endpoint=s3.amazonaws.com \
+  src/main.py
+```
+## Data Dictionary
+
+| Field Name | Type | Description |
+|-----------|------|------------|
+| asin | string | Unique product identifier |
+| title | string | Product title |
+| brand | string | Brand name |
+| review_count | integer | Total number of reviews |
+| avg_rating | float | Average rating (1–5) |
+| avg_review_length | float | Average length of review text |
+
+## Pipeline Documentation
+
+The pipeline consists of the following stages:
+
+1. Ingestion  
+   - Load data from Amazon S3 (Amazon_reviews, Amazon_metadata, google_trends, Common Crawl)
+
+2. Cleaning & Transformation  
+   - Remove invalid records  
+   - Normalize fields (dates, categories)
+
+3. Integration  
+   - Join reviews with metadata using ASIN  
+   - Combine with external trend signals
+
+4. Aggregation  
+   - Compute product-level metrics (review count, average rating)
+
+5. Output  
+   - Store results as Parquet in S3  
+   - Provide queryable dataset
+   
+## Final Schema
+The final dataset is structured at the product level.
+
+| Field | Type | Description |
+|------|------|------------|
+| asin | string | Product ID |
+| title | string | Product title |
+| brand | string | Brand |
+| review_count | int | Number of reviews |
+| avg_rating | double | Average rating |
+| avg_review_length | double | Review length metric |
+
+### Rationale
+
+- Aggregation at product level reduces data size  
+- Enables efficient querying  
+- Suitable for trend analysis  
+
+## Output
+data sources and output stored in S3 
+Final integrated dataset
+Aggregated product-level signals
+s3a://cs4265-bigdata-product-trends-jialiu/raw/google_trends/
+s3a://cs4265-bigdata-product-trends-jialiu/raw/metadata/
+s3a://cs4265-bigdata-product-trends-jialiu/raw/reviews/
+s3a://cs4265-bigdata-product-trends-jialiu/m3/clean/
+s3a://cs4265-bigdata-product-trends-jialiu/m3/clean/
+s3a://cs4265-bigdata-product-trends-jialiu/m3/integrated/
+s3a://cs4265-bigdata-product-trends-jialiu/m3/output/
+
+##Logging
+Example output:
+[INFO] Fetching Amazon reviews from s3a://Buckets/
+[INFO] Fetching Amazon metadata from s3a://Buckets/
+[INFO] Fetching Google Trends from s3a://Buckets/
+[INFO] Fetching Common Crawl sample from s3a://Buckets/
+[INFO] Ingestion stage completed in XXX seconds
+[INFO] Cleaning and transformation stage completed in XXXX seconds
+[INFO] Creating product-level aggregate signals
+[INFO] Integration and aggregation stage completed in XXXX seconds
+[INFO] Writing cleaned, integrated, and analytical outputs to S3
+[INFO] Writing Clean Amazon reviews to S3: s3a://Buckets/
+[INFO] Running sample query on final output
+[INFO] Verification and sample query stage completed in XXXX seconds
+[INFO] Pipeline complete. Duration: XXXXX seconds
+[INFO] M3 summary: reviews=XXXXXXXX, metadata=XXXXXX, trends=XX, commoncrawl=XXXXXXX, 
+integrated=XXXXXXXX, product_signals=XXXXXX, final=XXXXXX
+
+##Notes
+AWS credentials are required for full pipeline execution
+
+## Repository Structure
+
+```text
+update_CS4265_Project_Jia_Liu/
+├── config/
+│   ├── settings.yaml
+│   └── .env.example
+├── src/
+│   ├── ingestion/
+│   │   ├── amazon_ingest.py
+│   │   ├── commoncrawl_ingest.py
+│   │   └── trends_ingest.py
+│   ├── storage/
+│   │   └── save_to_s3.py
+│   ├── preprocessing/
+│   │   └── clean_transform.py
+│   ├── integratation/
+│   │   └── integrate_sources.py
+│   └── main.py
+├── docs/
+│   ├── update_CS4265_JIA_LIU_M1.pdf
+│   └── update_CS4265_JIA_LIU_M2.pdf
+│   └── update_CS4265_JIA_LIU_M3.pdf
+│   └── evidence-M2/
+│   │   └── amazon google trends successully.png
+│   │   └── amazon review and metadata records.png
+│   │   └── common crawl 10 records.png
+│   │   └── data in S3.png
+│   │   └── parquet.png
+│   │   └── read back verification.png
+│   └── evidence-M3/
+│   │   └── starting pipeline run.png
+│   │   └── Ingestion_Cleaning_Transformation.png
+│   │   └── Integration and save data in S3.png
+│   │   └── read back.png
+│   │   └── sample query and pipeline complete.png
+│   └── update_CS4265_JIA_LIU_M3.pdf
+├── requirements.txt
+├── .gitignore
+└── README.md
+```
 
 ## Author
-
 Jia Liu
 CS 4265 Big Data Analytics
 Kennesaw State University

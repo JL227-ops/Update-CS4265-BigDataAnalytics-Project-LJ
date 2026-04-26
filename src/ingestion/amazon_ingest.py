@@ -30,9 +30,14 @@ def review_schema() -> StructType:
     return StructType([
         StructField('asin', StringType(), True),
         StructField('reviewerID', StringType(), True),
+        StructField('reviewerName', StringType(), True),
         StructField('overall', DoubleType(), True),
         StructField('reviewText', StringType(), True),
+        StructField('summary', StringType(), True),
         StructField('unixReviewTime', LongType(), True),
+        StructField('reviewTime', StringType(), True),
+        StructField('verified', StringType(), True),
+        StructField('vote', StringType(), True),
     ])
 
 
@@ -42,7 +47,9 @@ def metadata_schema() -> StructType:
         StructField('title', StringType(), True),
         StructField('brand', StringType(), True),
         StructField('price', StringType(), True),
+        StructField('description', ArrayType(StringType()), True),
         StructField('categories', ArrayType(ArrayType(StringType())), True),
+        StructField('main_cat', StringType(), True),
     ])
 
 

@@ -27,12 +27,20 @@ sources:
 
 # OUTPUT SETTINGS
 outputs:
-  format: "parquet"
-  save_to_s3: true
+  outputs:
   reviews_parquet: "s3a://cs4265-bigdata-product-trends-jialiu/processed/reviews_parquet/"
   metadata_parquet: "s3a://cs4265-bigdata-product-trends-jialiu/processed/metadata_parquet/"
   trends_parquet: "s3a://cs4265-bigdata-product-trends-jialiu/processed/trends_parquet/"
   commoncrawl_parquet: "s3a://cs4265-bigdata-product-trends-jialiu/processed/commoncrawl_sample_parquet/"
+
+  reviews_clean_parquet: "s3a://cs4265-bigdata-product-trends-jialiu/m3/clean/reviews/"
+  metadata_clean_parquet: "s3a://cs4265-bigdata-product-trends-jialiu/m3/clean/metadata/"
+  trends_clean_parquet: "s3a://cs4265-bigdata-product-trends-jialiu/m3/clean/trends/"
+  commoncrawl_clean_parquet: "s3a://cs4265-bigdata-product-trends-jialiu/m3/clean/commoncrawl/"
+
+  amazon_integrated_parquet: "s3a://cs4265-bigdata-product-trends-jialiu/m3/integrated/amazon_reviews_metadata/"
+  product_signals_parquet: "s3a://cs4265-bigdata-product-trends-jialiu/m3/output/product_signals/"
+  final_output_parquet: "s3a://cs4265-bigdata-product-trends-jialiu/m3/output/final_product_trend_signals/"
 
 
 

@@ -543,6 +543,7 @@ Update-CS4265-BigDataAnalytics-Project-LJ/
 │   ├── update_CS4265_JIA_LIU_M2.pdf
 │   └── update_CS4265_JIA_LIU_M3.pdf
 │   └── CS4265_JIA_LIU_M4.pdf
+│   └── architecture.png
 │   ├── architecture.md
 │   ├── data_dictionary.md
 │   └── validation.md

@@ -366,7 +366,7 @@ update_CS4265_Project_Jia_Liu/
 │   │   └── save_to_s3.py
 │   ├── preprocessing/
 │   │   └── clean_transform.py
-│   ├── integratation/
+│   ├── integration/
 │   │   └── integrate_sources.py
 │   └── main.py
 ├── docs/

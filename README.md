@@ -549,8 +549,6 @@ Update-CS4265-BigDataAnalytics-Project-LJ/
 │   ├── update_CS4265_JIA_LIU_M2.pdf
 │   └── update_CS4265_JIA_LIU_M3.pdf
 │   └── CS4265_JIA_LIU_M4.pdf
-├── notebooks/
-
 ├── requirements.txt
 ├── .gitignore
 ├── LICENSE

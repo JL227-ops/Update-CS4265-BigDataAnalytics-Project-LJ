@@ -119,42 +119,6 @@ This repository focuses on the **working plumbing** for M2 rather than a full an
 - Trend aggregation and analytics  
 - Full large-scale Common Crawl processing  
 - Optional graph-based extensions for relationship discovery  
-
----
-
-## Repository Structure
-
-```text
-CS4265_M2_Package_Cindy_Liu/
-├── config/
-│   ├── settings.yaml
-│   └── .env.example
-├── src/
-│   ├── ingestion/
-│   │   ├── amazon_ingest.py
-│   │   ├── commoncrawl_ingest.py
-│   │   └── trends_ingest.py
-│   ├── storage/
-│   │   └── save_to_s3.py
-│   ├── processing/
-│   │   └── placeholder.py
-│   └── main.py
-<<<<<<< HEAD
-├── docs/
-│   ├── update_CS4265_JIA_LIU_M1.pdf
-│   └── update_CS4265_JIA_LIU_M2.pdf
-│   └── evidences
-=======
-├── data/ # S3
-├── docs/
-│   ├── update_CS4265_JIA_LIU_M1.pdf
-│   └── update_CS4265_JIA_LIU_M2.pdf
->>>>>>> a94fd6d38c652c8f644c73e3561c7f938c8b5460
-├── requirements.txt
-├── .gitignore
-└── README.md
-```
-
 ---
 
 ## Technology Choices
@@ -541,15 +505,30 @@ Update-CS4265-BigDataAnalytics-Project-LJ/
 ├── docs/
 │   ├── update_CS4265_JIA_LIU_M1.pdf
 │   ├── update_CS4265_JIA_LIU_M2.pdf
+│   └── evidence-M2/
+│   │   └── amazon google trends successully.png
+│   │   └── amazon review and metadata records.png
+│   │   └── common crawl 10 records.png
+│   │   └── data in S3.png
+│   │   └── parquet.png
+│   │   └── read back verification.png
+│   └── evidence-M3/
+│   │   └── starting pipeline run.png
+│   │   └── Ingestion_Cleaning_Transformation.png
+│   │   └── Integration and save data in S3.png
+│   │   └── read back.png
+│   │   └── sample query and pipeline complete.png
+│   └── evidences-M4/
+│   │   └── output sample-1.png
+│   │   └── output sample-2.png
+│   │   └── ingestion.png
+│   │   └── clean and normalization.png
 │   └── update_CS4265_JIA_LIU_M3.pdf
 │   └── CS4265_JIA_LIU_M4.pdf
 │   └── architecture.png
 │   ├── architecture.md
 │   ├── data_dictionary.md
 │   └── validation.md
-│   ├── evidences-M2/
-│   ├── evidences-M3/
-│   └── evidences-M4/
 ├── requirements.txt
 ├── .gitignore
 ├── LICENSE
@@ -575,13 +554,11 @@ pip install -r requirements.txt
 ```
 
 ## Configure AWS
-
 ```bash
 aws configure
 ```
 
 AWS credentials are required for full pipeline execution.
-
 ---
 
 # Run Pipeline
@@ -591,7 +568,6 @@ spark-submit \
   --packages org.apache.hadoop:hadoop-aws:3.4.2 \
   src/main.py
 ```
-
 ---
 
 # Pipeline Processing Stages

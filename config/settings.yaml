@@ -21,13 +21,12 @@ sources:
   amazon_reviews: "s3a://cs4265-bigdata-product-trends-jialiu/raw/reviews/Electronics.json.gz"
   amazon_metadata: "s3a://cs4265-bigdata-product-trends-jialiu/raw/metadata/meta_Electronics.json.gz"
   google_trends: "s3a://cs4265-bigdata-product-trends-jialiu/raw/google_trends/time_series_US_20180101-0000_20260418-2022.csv"
-  #Common Crawl sample（只用一个文件）
+  #Common Crawl sample
   common_crawl_sample: "s3a://commoncrawl/crawl-data/CC-MAIN-2018-39/segments/1537267155413.17/wet/CC-MAIN-20180918130631-20180918150631-00000.warc.wet.gz"
 
 
 # OUTPUT SETTINGS
 outputs:
-  outputs:
   reviews_parquet: "s3a://cs4265-bigdata-product-trends-jialiu/processed/reviews_parquet/"
   metadata_parquet: "s3a://cs4265-bigdata-product-trends-jialiu/processed/metadata_parquet/"
   trends_parquet: "s3a://cs4265-bigdata-product-trends-jialiu/processed/trends_parquet/"
